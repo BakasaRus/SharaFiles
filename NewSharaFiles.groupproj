@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{148A6E5E-3B2A-4230-98EC-C9A8F2DE8D9D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SharaFiles.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AdminPanel.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SharaFiles">
+        <MSBuild Projects="SharaFiles.dproj"/>
+    </Target>
+    <Target Name="SharaFiles:Clean">
+        <MSBuild Projects="SharaFiles.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SharaFiles:Make">
+        <MSBuild Projects="SharaFiles.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AdminPanel">
+        <MSBuild Projects="AdminPanel.dproj"/>
+    </Target>
+    <Target Name="AdminPanel:Clean">
+        <MSBuild Projects="AdminPanel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AdminPanel:Make">
+        <MSBuild Projects="AdminPanel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SharaFiles;AdminPanel"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SharaFiles:Clean;AdminPanel:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SharaFiles:Make;AdminPanel:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
